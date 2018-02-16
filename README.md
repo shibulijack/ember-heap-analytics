@@ -1,26 +1,49 @@
 # ember-heap-analytics
 
-This README outlines the details of collaborating on this Ember addon.
+`ember-heap-analytics` is an easy way to add Heap analytics to your ember-cli project without having to rely on the Heap dashboard.
+
+If you have any questions, come :wave: hello in #e-heap on the [Ember Community Slack](https://ember-community-slackin.herokuapp.com).
+
+## Features
+- provides injectable Ember service for all the [ Heap client side APIs](https://docs.heapanalytics.com/reference)
 
 ## Installation
 
-* `git clone <repository-url>` this repository
-* `cd ember-heap-analytics`
-* `npm install`
+* `npm install --save ember-heap-analytics`
+* `ember server`
 
-## Running
+## Usage
 
-* `ember serve`
-* Visit your app at [http://localhost:4200](http://localhost:4200).
+````javascript
 
-## Running Tests
+export default Ember.Component.extend({
 
-* `npm test` (Runs `ember try:each` to test your addon against multiple Ember versions)
-* `ember test`
-* `ember test --server`
+  heap: Ember.inject.service(),
 
-## Building
+  myCustomEventMethod: function() {
 
-* `ember build`
+    var heap = this.get('heap');
 
-For more information on using ember-cli, visit [https://ember-cli.com/](https://ember-cli.com/).
+    // track :: Send additional events to Heap.
+    heap.track('Purchase', {dollars: 50, item: 'Furby'});
+
+    // identify :: Attach a unique identity to a user.
+    heap.identify('alice123');
+
+    // addUserProperties :: Attach custom properties to user profiles.
+    heap.addUserProperties({'Name': 'Alice Smith','Profession': 'Data Scientist'});
+
+    // addEventProperties :: Specify a set of global key-value pairs to get attached to all of a user's subsequent events.
+    heap.addEventProperties({'Logged In': 'true', 'Payment Plan': 'Free'});
+
+    // removeEventProperty :: Stops a single event property from getting attached to all subsequent events.
+    heap.removeEventProperty('Logged In');
+
+    // clearEventProperties :: Removes all stored event properties.
+    heap.clearEventProperties();
+
+  }
+})
+````
+
+For more information, check out the [official documentation](https://docs.heapanalytics.com/reference)

@@ -1,12 +1,15 @@
 {
   "name": "ember-heap-analytics",
   "version": "0.0.1",
-  "description": "The default blueprint for ember-cli addons.",
+  "description": "Ember addon to track heap analytics",
   "keywords": [
-    "ember-addon"
+    "ember-addon",
+    "heap",
+    "tracking",
+    "analytics"
   ],
   "license": "MIT",
-  "author": "",
+  "author": "Shibu Lijack",
   "directories": {
     "doc": "doc",
     "test": "tests"
